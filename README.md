@@ -91,7 +91,36 @@ You can run the tests using:
 
 mvn test
 
+## Code Style and Checkstyle
 
+## Code Quality Checks
+This project uses Checkstyle to maintain consistent code quality and adherence to coding standards. Checkstyle is a static code analysis tool that helps developers follow coding best practices and maintain a uniform code style across the project.
+Key Style Checks Implemented
+Our Checkstyle configuration focuses on several important aspects of code quality:
+
+Naming Conventions: Ensures consistent naming for variables, methods, classes, and packages
+Import Management: Prevents unused or redundant imports
+Code Structure:
+
+Limits method length (max 50 lines)
+Restricts number of method parameters (max 5)
+Enforces proper block formatting
+
+
+Whitespace and Formatting: Maintains consistent code formatting
+Potential Coding Problems: Detects common coding issues and potential bugs
+
+## Running Checkstyle
+Using Maven:
+To run Checkstyle and check your code quality, use the following Maven command:
+
+mvn validate
+
+This command will:
+
+Check all source files against the defined Checkstyle rules
+Output violations to the console
+Fail the build if any critical style violations are found
 
 ## Additional Notes
 - This is a basic setup and may need additional features like security, validation, and more comprehensive error handling for a production environment.
