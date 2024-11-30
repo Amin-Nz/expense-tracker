@@ -1,5 +1,25 @@
-- repo: https://github.com/pre-commit/mirrors-checkstyle
-  rev: v8.46  # You can use the version you need, or use the latest tag
-  hooks:
-    - id: checkstyle
-      args: ['-c', 'checkstyle.xml']
+repos:
+  - repo: https://github.com/pre-commit/mirrors-checkstyle
+    rev: v10.12.1  # Updated to a more recent version
+    hooks:
+      - id: checkstyle
+        args: 
+          - '-c'
+          - 'checkstyle.xml'
+        additional_dependencies: 
+          - com.puppycrawl.tools:checkstyle:10.12.1
+
+  # Optional: Additional pre-commit hooks for comprehensive code quality
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v4.5.0
+    hooks:
+      - id: trailing-whitespace
+      - id: end-of-file-fixer
+      - id: check-yaml
+      - id: check-added-large-files
+
+  # Optional: Java-specific linting
+  - repo: https://github.com/Angelo98M/pre-commit-java-hooks
+    rev: v1.0.1
+    hooks:
+      - id: spotless-java
