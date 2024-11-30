@@ -60,13 +60,13 @@ Description: Retrieves a specific expense by its ID.
 Endpoint: POST /api/expenses
 Description: Adds a new expense.
 Request Body:
-
-{
-    "description": "Lunch",
-    "amount": 15.0,
-    "category": "Food"
-}
-
+    ```json
+    {   
+        "description": "Lunch",
+        "amount": 15.0,
+        "category": "Food"
+    }
+    ```
 4. **Update an Existing Expense**
 
 Endpoint: PUT /api/expenses/{id}
@@ -115,6 +115,3 @@ curl -X DELETE http://localhost:8080/api/expenses/1
 
 **Conclusion**:
 Congratulations! You have successfully set up and used the Expense Tracker API to manage your expenses. For further development, consider exploring additional features or integrating it with a frontend application.
-
-
-
