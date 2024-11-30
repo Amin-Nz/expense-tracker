@@ -133,7 +133,7 @@ mvn javadoc:javadoc
 
 mvn javadoc:jar
 
-after this step, the HTMl output is accesible through /target/index.html
+after this step, the HTMl output is accesible through /target/apidocs/index.html
 
 ## Additional Notes
 - This is a basic setup and may need additional features like security, validation, and more comprehensive error handling for a production environment.
