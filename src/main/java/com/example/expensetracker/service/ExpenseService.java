@@ -9,6 +9,9 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+/**
+ * Provides services for managing expenses.
+ */
 @Service
 public class ExpenseService {
 
@@ -17,40 +20,64 @@ public class ExpenseService {
     @Autowired
     private ExpenseRepository repository;
 
+    /**
+     * Retrieves all expenses from the repository.
+     *
+     * @return a list of all expenses, not null
+     */
     public List<Expense> getAllExpenses() {
-        logger.info("Fetching all expenses");
+        logger.debug("Fetching all expenses");
         List<Expense> expenses = repository.findAll();
-        logger.debug("Retrieved {} expenses", expenses.size());
+        logger.info("Retrieved {} expenses", expenses.size());
         return expenses;
     }
 
+    /**
+     * Retrieves an expense by its ID.
+     *
+     * @param id the ID of the expense to retrieve, must not be null
+     * @return the expense with the specified ID, or null if not found
+     */
     public Expense getExpenseById(Long id) {
-        logger.info("Fetching expense with id: {}", id);
+        logger.debug("Fetching expense with id: {}", id);
         Expense expense = repository.findById(id).orElse(null);
         if (expense == null) {
             logger.warn("Expense with id {} not found", id);
         } else {
-            logger.debug("Retrieved expense: {}", expense);
+            logger.info("Retrieved expense: {}", expense);
         }
         return expense;
     }
 
+    /**
+     * Adds a new expense to the repository.
+     *
+     * @param expense the expense to add, must not be null
+     * @return the added expense, not null
+     */
     public Expense addExpense(Expense expense) {
-        logger.info("Adding new expense: {}", expense);
+        logger.debug("Adding new expense: {}", expense);
         Expense savedExpense = repository.save(expense);
-        logger.debug("Expense saved with id: {}", savedExpense.getId());
+        logger.info("Added new expense with id: {}", savedExpense.getId());
         return savedExpense;
     }
 
+    /**
+     * Updates an existing expense.
+     *
+     * @param id      the ID of the expense to update, must not be null
+     * @param expense the updated expense data, must not be null
+     * @return the updated expense, or null if the original did not exist
+     */
     public Expense updateExpense(Long id, Expense expense) {
-        logger.info("Updating expense with id: {}", id);
+        logger.debug("Updating expense with id: {}", id);
         Expense existingExpense = repository.findById(id).orElse(null);
         if (existingExpense != null) {
             existingExpense.setDescription(expense.getDescription());
             existingExpense.setAmount(expense.getAmount());
             existingExpense.setCategory(expense.getCategory());
             Expense updatedExpense = repository.save(existingExpense);
-            logger.debug("Expense updated: {}", updatedExpense);
+            logger.info("Updated expense: {}", updatedExpense);
             return updatedExpense;
         } else {
             logger.warn("Expense with id {} not found for update", id);
@@ -58,13 +85,18 @@ public class ExpenseService {
         }
     }
 
+    /**
+     * Deletes an expense by its ID.
+     *
+     * @param id the ID of the expense to delete, must not be null
+     */
     public void deleteExpense(Long id) {
-        logger.info("Deleting expense with id: {}", id);
+        logger.debug("Deleting expense with id: {}", id);
         try {
             repository.deleteById(id);
-            logger.debug("Expense with id {} deleted successfully", id);
+            logger.info("Deleted expense with id: {}", id);
         } catch (Exception e) {
-            logger.error("Error deleting expense with id {}", id, e);
+            logger.error("Error deleting expense with id: {}", id, e);
         }
     }
 }
