@@ -2,7 +2,7 @@ repos:
   - repo: local
     hooks:
       - id: checkstyle
-        name: checkstyle.xml
-        entry: mvn checkstyle:check
+        name: checkstyle
+        entry: java -jar path/to/checkstyle-10.12.1-all.jar -c checkstyle.xml
         language: system
         files: \.java$
