@@ -122,6 +122,10 @@ Check all source files against the defined Checkstyle rules
 Output violations to the console
 Fail the build if any critical style violations are found
 
+## Pre-Commit :
+
+I created a pre-commit hook that runs the checkstyle mvn command everytime a new commit is done. config is inside the .pre-commit.
+
 ## Additional Notes
 - This is a basic setup and may need additional features like security, validation, and more comprehensive error handling for a production environment.
 - The H2 database is for development purposes. For production, consider using a persistent database like PostgreSQL or MySQL.
