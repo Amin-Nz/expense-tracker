@@ -60,7 +60,8 @@ Description: Retrieves a specific expense by its ID.
 Endpoint: POST /api/expenses
 Description: Adds a new expense.
 Request Body:
-    ```json
+    
+    ```
     {   
         "description": "Lunch",
         "amount": 15.0,
