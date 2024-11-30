@@ -1,0 +1,5 @@
+- repo: https://github.com/pre-commit/mirrors-checkstyle
+  rev: v8.46  # You can use the version you need, or use the latest tag
+  hooks:
+    - id: checkstyle
+      args: ['-c', 'checkstyle.xml']
