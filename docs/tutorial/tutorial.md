@@ -35,12 +35,12 @@ Before you begin, ensure you have the following installed:
 2. **Build the Project**:
 Use Maven to build the project and download dependencies:
 
-mvn clean install
+ mvn clean install
 
 3. **Run the Application**:
 Start the Spring Boot application:
 
-mvn spring-boot:run
+ mvn spring-boot:run
 
 The application will run on http://localhost:8080.
 
@@ -74,11 +74,11 @@ Endpoint: PUT /api/expenses/{id}
 Description: Updates an existing expense.
 Request Body:
 
-{
-    "description": "Updated Lunch",
-    "amount": 20.0,
-    "category": "Food"
-}
+    {
+        "description": "Updated Lunch",
+        "amount": 20.0,
+        "category": "Food"
+    }
 
 5. **Delete an Expense**
 Endpoint: DELETE /api/expenses/{id}
@@ -88,31 +88,32 @@ Description: Deletes an expense by its ID.
 **Get All Expenses** : 
 
   ```bash
-curl -X GET http://localhost:8080/api/expenses
+     curl -X GET http://localhost:8080/api/expenses
 
 **Add a New Expense**:
 
-curl -X POST http://localhost:8080/api/expenses \
--H "Content-Type: application/json" \
--d '{
-    "description": "Lunch",
-    "amount": 15.0,
-    "category": "Food"
-}'
+    ```bash 
+    curl -X POST http://localhost:8080/api/expenses \
+    -H "Content-Type: application/json" \
+    -d '{
+        "description": "Lunch",
+        "amount": 15.0,
+        "category": "Food"
+    }'
 
 **Update an Existing Expense**:
-
-curl -X PUT http://localhost:8080/api/expenses/1 \
--H "Content-Type: application/json" \
--d '{
-    "description": "Updated Lunch",
-    "amount": 20.0,
-    "category": "Food"
-}'
+    ```bash
+    curl -X PUT http://localhost:8080/api/expenses/1 \
+    -H "Content-Type: application/json" \
+    -d '{
+        "description": "Updated Lunch",
+        "amount": 20.0,
+        "category": "Food"
+    }'
 
 **Delete an Expense**:
-
-curl -X DELETE http://localhost:8080/api/expenses/1
+    ```bash
+    curl -X DELETE http://localhost:8080/api/expenses/1
 
 **Conclusion**:
 Congratulations! You have successfully set up and used the Expense Tracker API to manage your expenses. For further development, consider exploring additional features or integrating it with a frontend application.
