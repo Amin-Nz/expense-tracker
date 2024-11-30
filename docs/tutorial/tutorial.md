@@ -61,13 +61,13 @@ Endpoint: POST /api/expenses
 Description: Adds a new expense.
 Request Body:
     
-    ```bash
+    
     {   
         "description": "Lunch",
         "amount": 15.0,
         "category": "Food"
     }
-    ```
+    
 4. **Update an Existing Expense**
 
 Endpoint: PUT /api/expenses/{id}
