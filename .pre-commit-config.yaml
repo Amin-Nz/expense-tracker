@@ -1,8 +1,9 @@
 repos:
   - repo: local
     hooks:
-      - id: checkstyle
-        name: checkstyle
-        entry: java -jar path/to/checkstyle-10.12.1-all.jar -c checkstyle.xml
+      - id: maven-checkstyle
+        name: Maven Checkstyle
+        entry: mvn checkstyle:check -Dcheckstyle.config.location=checkstyle.xml
         language: system
         files: \.java$
+        pass_filenames: false
