@@ -85,14 +85,15 @@ Endpoint: DELETE /api/expenses/{id}
 Description: Deletes an expense by its ID.
 
 **Example Requests**
-**Get All Expenses** : 
 
-  ```bash
+**Get All Expenses**: 
+
+    ```
      curl -X GET http://localhost:8080/api/expenses
-
+    ```
 **Add a New Expense**:
 
-    ```bash 
+    ``` 
     curl -X POST http://localhost:8080/api/expenses \
     -H "Content-Type: application/json" \
     -d '{
@@ -100,9 +101,9 @@ Description: Deletes an expense by its ID.
         "amount": 15.0,
         "category": "Food"
     }'
-
+    ```
 **Update an Existing Expense**:
-    ```bash
+    ```
     curl -X PUT http://localhost:8080/api/expenses/1 \
     -H "Content-Type: application/json" \
     -d '{
@@ -110,10 +111,10 @@ Description: Deletes an expense by its ID.
         "amount": 20.0,
         "category": "Food"
     }'
-
+    ```
 **Delete an Expense**:
-    ```bash
+    ```
     curl -X DELETE http://localhost:8080/api/expenses/1
-
+    ```
 **Conclusion**:
 Congratulations! You have successfully set up and used the Expense Tracker API to manage your expenses. For further development, consider exploring additional features or integrating it with a frontend application.
