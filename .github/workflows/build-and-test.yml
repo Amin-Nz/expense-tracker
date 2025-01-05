@@ -8,10 +8,11 @@ on:
 jobs:
   build-and-test:
     runs-on: ubuntu-latest
+    timeout-minutes: 60
     strategy:
       fail-fast: false
       matrix:
-        java-version: [17,19]
+        java-version: [17]
 
     steps:
     - name: Checkout code
@@ -45,7 +46,7 @@ jobs:
         git config user.name "GitHub Actions"
         git config user.email "actions@github.com"
         git tag $TAG_NAME
-        git push origin $TAG_NAME
+        git push https://x-access-token:${{ secrets.PERSONAL_ACCESS_TOKEN }}@github.com/${{ github.repository }} $TAG_NAME
 
   release:
     needs: build-and-test
@@ -59,9 +60,15 @@ jobs:
     - name: Generate Changelog
       id: changelog
       run: |
-        latest_tag=$(git describe --tags --abbrev=0)
-        changelog=$(git log $latest_tag..HEAD --pretty=format:"- %s" --abbrev-commit)
-        echo "::set-output name=changelog::${changelog}"
+        # Check if there are any existing tags
+        if git rev-parse --verify "refs/tags/*" >/dev/null 2>&1; then
+          latest_tag=$(git describe --tags --abbrev=0)
+          changelog=$(git log $latest_tag..HEAD --pretty=format:"- %s" --abbrev-commit)
+          echo "::set-output name=changelog::${changelog}"
+        else
+          echo "No previous tags found, starting fresh."
+          echo "::set-output name=changelog::No changelog available."
+        fi
 
     - name: Create GitHub Release
       uses: softprops/action-gh-release@v1
@@ -71,4 +78,4 @@ jobs:
         release_name: Release ${{ github.ref }}
         body: ${{ steps.changelog.outputs.changelog }}
       env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        GITHUB_TOKEN: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
