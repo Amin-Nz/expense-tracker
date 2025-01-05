@@ -12,7 +12,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        java-version: [17]
+        java-version: [17,19]
 
     steps:
     - name: Checkout code
@@ -72,7 +72,7 @@ jobs:
       uses: softprops/action-gh-release@v1
       with:
         files: target/*.jar
-        tag_name: ${{ github.ref_name }}  # Correctly reference the tag name without 'refs/tags/'
+        tag_name: ${{ github.ref_name }}
         release_name: Release ${{ github.ref_name }}
         body: ${{ steps.changelog.outputs.changelog }}
       env:
