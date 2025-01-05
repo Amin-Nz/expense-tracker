@@ -30,6 +30,5 @@ jobs:
       with:
         publish_branch: gh-pages
         publish_dir: ./target/site/apidocs
-      with:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
