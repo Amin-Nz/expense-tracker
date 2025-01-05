@@ -1,0 +1,5 @@
+com.example.expensetracker
+com.example.expensetracker.controller
+com.example.expensetracker.model
+com.example.expensetracker.repository
+com.example.expensetracker.service
