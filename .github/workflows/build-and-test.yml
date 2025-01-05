@@ -11,16 +11,18 @@ jobs:
     timeout-minutes: 60
     strategy:
       fail-fast: false
+      matrix:
+        java-version: [17,19]
 
     steps:
     - name: Checkout code
       uses: actions/checkout@v3
 
-    - name: Set up Java 17
+    - name: Set up Java ${{ matrix.java-version }}
       uses: actions/setup-java@v3
       with:
         distribution: 'temurin'
-        java-version: 17
+        java-version: ${{ matrix.java-version }}
 
     - name: Cache Maven packages
       uses: actions/cache@v3
@@ -50,7 +52,6 @@ jobs:
     needs: build-and-test
     runs-on: ubuntu-latest
     timeout-minutes: 60
-    fail-fast: false
 
     steps:
     - name: Checkout code
@@ -67,9 +68,8 @@ jobs:
       uses: softprops/action-gh-release@v1
       with:
         files: target/*.jar
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      with:
         tag_name: ${{ github.ref }}
         release_name: Release ${{ github.ref }}
         body: ${{ steps.changelog.outputs.changelog }}
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
