@@ -3,7 +3,7 @@ name: Build and Test Java Expense Tracker
 on:
   push:
     branches:
-      - main  # Adjust to your main branch name
+      - main
   pull_request:
 
 jobs:
@@ -12,7 +12,7 @@ jobs:
 
     strategy:
       matrix:
-        java-version: [11, 17, 19]  # Add Java versions to test against
+        java-version: [11, 17, 19]
 
     steps:
     - name: Checkout code
@@ -21,7 +21,7 @@ jobs:
     - name: Set up Java ${{ matrix.java-version }}
       uses: actions/setup-java@v3
       with:
-        distribution: 'temurin'  # Use the preferred Java distribution
+        distribution: 'temurin'
         java-version: ${{ matrix.java-version }}
 
     - name: Cache Maven packages
