@@ -60,13 +60,11 @@ jobs:
     - name: Generate Changelog
       id: changelog
       run: |
-        # Check if there are any existing tags
         if git rev-parse --verify "refs/tags/*" >/dev/null 2>&1; then
           latest_tag=$(git describe --tags --abbrev=0)
           changelog=$(git log $latest_tag..HEAD --pretty=format:"- %s" --abbrev-commit)
           echo "::set-output name=changelog::${changelog}"
         else
-          echo "No previous tags found, starting fresh."
           echo "::set-output name=changelog::No changelog available."
         fi
 
@@ -74,8 +72,9 @@ jobs:
       uses: softprops/action-gh-release@v1
       with:
         files: target/*.jar
-        tag_name: ${{ github.ref }}
-        release_name: Release ${{ github.ref }}
+        tag_name: ${{ github.ref_name }}  # Correctly reference the tag name without 'refs/tags/'
+        release_name: Release ${{ github.ref_name }}
         body: ${{ steps.changelog.outputs.changelog }}
       env:
         GITHUB_TOKEN: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
+
